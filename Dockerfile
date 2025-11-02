@@ -1,5 +1,12 @@
-# Используем официальный образ Plausible CE
-FROM ghcr.io/plausible/community-edition:v3.0.1
+# Use the official Plausible CE image
+FROM plausible/community-edition:v2
 
-# Указываем команду запуска (Render требует CMD)
-CMD ["/entrypoint.sh", "run"]
+# Set environment variables for production
+ENV MIX_ENV=prod
+ENV DISABLE_CLICKHOUSE=true
+
+# Expose Plausible’s default port
+EXPOSE 8000
+
+# Start the Plausible server
+CMD ["sh", "-c", "bin/plausible eval Plausible.Release.migrate && bin/plausible start"]
