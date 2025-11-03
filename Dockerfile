@@ -4,6 +4,7 @@ FROM ghcr.io/plausible/community-edition:v3.0.1
 # Отключаем ClickHouse, включаем прод-режим
 ENV MIX_ENV=prod
 ENV DISABLE_CLICKHOUSE=true
+ENV EVENTS_DB_BACKEND=postgres
 
 # Экспонируем порт
 EXPOSE 8000
